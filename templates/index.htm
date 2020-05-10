@@ -1,0 +1,64 @@
+{% extends "templates/_base.htm" %}
+{% block stylesheet %}
+<style type="text/css">
+  img.note { float:left; }
+  .mt_left {
+			float: left;
+			height: 330px;
+			margin-bottom: 10px;
+			margin-left: 10px;
+			margin-top: 10px;
+			padding: 0 10px;
+			width: 70%;
+	    }
+        
+  .mt_right {
+			float: right;
+			margin-bottom: 10px;
+			margin-top: 10px;
+			width: 25%;
+	    }
+</style>
+{% endblock %}
+{% block javascript %}
+         <script type="text/javascript" src="/static/javascripts/jquery-1.2.2.pack.js"></script>
+         <script type="text/javascript">
+            function getHints() {
+                var wordlength = document.getElementById("wordlength").value;
+                var letters = $("#letters").val();
+                var filter = $("#filter").val();
+                $("#answers").html("Running ...");
+                $.ajax( {
+                    type:'POST',
+                    url:'/gethints',
+                    data:{'wordlength': wordlength, 'letters':letters, 'filters':filter},
+                    cache:false,
+                    success: function(html) {$("#answers").html(html);},
+                    error: function(xrq, sts, err) {$("#answers").val("Error");},
+                });
+            }
+         </script>
+{% endblock %}
+
+{% block bodycontent %}
+<img src="/static/images/example.png" style="float:left; margin:5px">
+ <b>Instructions:</b>
+ <li>Step 1:  Enter the word length, in this case, "<b>7</b>"
+ <li>Step 2:  Enter the given letters, in this case, "<b>msrjlwlwwoeb</b>".
+ <li>Step 3:  Click "Get Hints" for possible answers.
+ <li>Optional:Enter filter, for example, "<b>.c......</b>" if you want the second letter to be "<b>c</b>". Dot ("<b>.</b>") represents any character.
+<hr>
+<table>
+<tr>
+        <td>Enter word length:</td><td> <input type="text" id="wordlength" value={{wordlength}}></td>
+</tr>
+<tr>
+        <td>Enter letters    :</td><td> <input type="text" id="letters" value={{letters}}> (Not case sensitive)</td>
+</tr>
+<tr>
+        <td>Enter filter     :</td><td> <input type="text" id="filter" value={{filter}}> (Optional)</td>
+</tr>
+</table>
+<input type=button value="Get Hints" onclick="getHints();">
+<div id="answers"><p><table><tr><td>{{answers}}</td></tr></table></p></div>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{% block title %} 4 Pics 1 Word Helper{% endblock %}</title>
+	<link href="/static/glike.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="/static/javascripts/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript">
+            // Google Analytics
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-24718924-1']);
+            _gaq.push(['_trackPageview']);
+     
+            (function() {
+              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+	
+        {% block stylesheet %}
+        {% endblock %}
+        {% block javascript %}
+        {% endblock %}
+</head>
+<body>
+	<div id="header">
+		<ul>
+                    <li><img src="/static/images/4p1w100x100.png" border=0 style="vertical-align:bottom;position:0px"><b>Hints for "4 Pics 1 Word" Game</b></li>
+		</ul>
+	</div>
+	<div id="bodycontent">
+		{% block bodycontent %}
+		Replace this
+		{% endblock %}
+	</div>
+        <div id="footer">
+          <center>
+           <img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="4 Pics 1 Word" />
+          </center>
+        </div>
+</body>
+</html>
