@@ -1,5 +1,5 @@
 o. Start 'Powershell' in Admin mode
-o. How to deploy using 'gcloud'
+o. How to deploy using 'gcloud' (inside project directory)
    %> gcloud app deploy --project 4pics1w
 
 
